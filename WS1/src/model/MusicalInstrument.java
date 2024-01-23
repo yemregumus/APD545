@@ -1,5 +1,6 @@
 package model;
 
+// abstract class representing a musical instrument, implementing the IFixable, IPlayable, and Comparable interfaces.
 public abstract class MusicalInstrument implements IFixable, IPlayable, Comparable<MusicalInstrument> {
     private double price;
 
