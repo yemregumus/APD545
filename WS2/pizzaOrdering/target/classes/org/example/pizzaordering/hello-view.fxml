@@ -3,39 +3,130 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pizzaordering.HelloController">
+   <bottom>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+               <Button fx:id="clearFieldsButton" mnemonicParsing="false" onAction="#handleClearFields" text="Clear Fields" />
+
+               <Button fx:id="placeOrderButton" onAction="#handlePlaceOrder" text="Place Order">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin></Button>
+            </children>
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+        </HBox>
+   </bottom>
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField promptText="Enter Name" />
-            <TextField promptText="Enter Phone Number" />
-            <TextField promptText="Enter Pizza Qantity" />
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-               <children>
-                  <Label text="Select Pizza Size" />
-                  <ChoiceBox prefWidth="150.0" />
-                  <Label text="Select Crust Type" />
-                  <ChoiceBox prefHeight="25.0" prefWidth="112.0" />
-                  <Label text="Select Toppings" />
-                  <ChoiceBox prefWidth="112.0" />
-               </children>
-            </VBox>
+            <Label alignment="CENTER" text="PIZZA MAMAMIA" textAlignment="CENTER">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.1872037914691943" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.5" green="0.2083333283662796" blue="0.2083333283662796" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+               <font>
+                  <Font name="Sitka Small" size="34.0" />
+               </font>
+            </Label>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
       </HBox>
    </top>
-   <center>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="166.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Clear Fields" />
-            <Button mnemonicParsing="false" text="Place Order" />
+            <Label text="Customer Name" />
+            <TextField fx:id="customerNameTextField" />
+            <Label text="Customer Number" />
+            <TextField fx:id="customerNumberTextField" />
+            <Label text="Pizza Quantity" />
+            <TextField fx:id="pizzaQuantityTextField" />
          </children>
          <padding>
-            <Insets top="20.0" />
+            <Insets bottom="5.0" left="5.0" right="10.0" />
          </padding>
+      </VBox>
+   </left>
+   <center>
+      <HBox prefHeight="200.0" prefWidth="414.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="190.0" prefWidth="161.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="100.0" text="Select Pizza Size">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <ChoiceBox fx:id="pizzaSizeChoiceBox" prefHeight="25.0" prefWidth="145.0" />
+                  <Label prefHeight="17.0" prefWidth="99.0" text="Select Crust" />
+                  <ChoiceBox fx:id="crustChoiceBox" prefHeight="25.0" prefWidth="145.0" />
+               </children>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="162.0">
+               <children>
+                  <Label text="Select Toppings ($1.15 each)">
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="pineappleCheckBox" mnemonicParsing="false" text="Pineapple" />
+                  <CheckBox fx:id="extraCheeseCheckBox" mnemonicParsing="false" text="Extra Cheese" />
+                  <CheckBox fx:id="driedShrimpsCheckBox" mnemonicParsing="false" text="Dried Shrimps" />
+                  <CheckBox fx:id="mushroomsCheckBox" mnemonicParsing="false" text="Mushrooms" />
+                  <CheckBox fx:id="anchoviesCheckBox" mnemonicParsing="false" text="Anchovies" />
+                  <CheckBox fx:id="spinachCheckBox" mnemonicParsing="false" text="Spinach" />
+                  <CheckBox fx:id="daconCheckBox" mnemonicParsing="false" text="Dacon" />
+                  <CheckBox fx:id="roastedGarlicCheckBox" mnemonicParsing="false" text="Roasted Garlic" />
+                  <CheckBox fx:id="sunDriedTomatoesCheckBox" text="Sun Dried Tomatoes" />
+                  <CheckBox fx:id="jalapenoCheckBox" text="Jalapeno" />
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="175.0" prefWidth="193.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="180.0" text="(Meat type toppings cost $2.15 Each)">
+                     <font>
+                        <Font name="System Bold" size="9.0" />
+                     </font></Label>
+                  <CheckBox fx:id="groundBeefCheckBox" mnemonicParsing="false" text="Ground Beef" />
+                  <CheckBox fx:id="shreddedChickenCheckBox" mnemonicParsing="false" text="Shredded Chicken" />
+                  <CheckBox fx:id="grilledChickenCheckBox" mnemonicParsing="false" prefHeight="17.0" prefWidth="123.0" text="Grilled Chicken" />
+                  <CheckBox fx:id="pepperoniCheckBox" mnemonicParsing="false" text="Pepperoni" />
+                  <CheckBox fx:id="hamCheckBox" mnemonicParsing="false" text="Ham" />
+                  <CheckBox fx:id="baconCheckBox" mnemonicParsing="false" text="Bacon" />
+               </children>
+               <HBox.margin>
+                  <Insets top="12.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
       </HBox>
    </center>
 </BorderPane>
