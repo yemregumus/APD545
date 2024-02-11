@@ -1,43 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Import necessary JavaFX classes and packages -->
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
+<!-- Root element: BorderPane -->
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pizzaordering.HelloController">
-   <bottom>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
-            <children>
-               <Button fx:id="clearFieldsButton" mnemonicParsing="false" onAction="#handleClearFields" text="Clear Fields" />
 
-               <Button fx:id="placeOrderButton" onAction="#handlePlaceOrder" text="Place Order">
+   <!-- Bottom section -->
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <!-- Button to clear fields -->
+            <Button fx:id="clearFieldsButton" mnemonicParsing="false" onAction="#handleClearFields" text="Clear Fields" />
+
+            <!-- Button to place order -->
+            <Button fx:id="placeOrderButton" onAction="#handlePlaceOrder" text="Place Order">
+               <!-- Set margin for the button -->
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin></Button>
-            </children>
-            <padding>
-                <Insets top="20.0" />
-            </padding>
+         </children>
+         <!-- Set padding for the HBox -->
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+         <!-- Set margin for the HBox -->
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
-        </HBox>
+      </HBox>
    </bottom>
+
+   <!-- Top section -->
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <!-- Label for the title -->
             <Label alignment="CENTER" text="PIZZA MAMAMIA" textAlignment="CENTER">
+               <!-- Set text color using a radial gradient -->
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.1872037914691943" radius="0.5">
                      <stops>
                         <Stop>
+                           <!-- Color stop 1 -->
                            <color>
                               <Color red="1.0" />
                            </color>
                         </Stop>
                         <Stop offset="1.0">
+                           <!-- Color stop 2 -->
                            <color>
                               <Color red="0.5" green="0.2083333283662796" blue="0.2083333283662796" />
                            </color>
@@ -45,6 +60,7 @@
                      </stops>
                   </RadialGradient>
                </textFill>
+               <!-- Set font -->
                <font>
                   <Font name="Sitka Small" size="34.0" />
                </font>
@@ -52,9 +68,12 @@
          </children>
       </HBox>
    </top>
+
+   <!-- Left section -->
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="166.0" BorderPane.alignment="CENTER">
          <children>
+            <!-- Labels and text fields for customer information -->
             <Label text="Customer Name" />
             <TextField fx:id="customerNameTextField" />
             <Label text="Customer Number" />
@@ -62,38 +81,53 @@
             <Label text="Pizza Quantity" />
             <TextField fx:id="pizzaQuantityTextField" />
          </children>
+         <!-- Set padding for the VBox -->
          <padding>
             <Insets bottom="5.0" left="5.0" right="10.0" />
          </padding>
       </VBox>
    </left>
+
+   <!-- Center section -->
    <center>
       <HBox prefHeight="200.0" prefWidth="414.0" BorderPane.alignment="CENTER">
          <children>
+            <!-- VBox for selecting pizza size and crust -->
             <VBox prefHeight="190.0" prefWidth="161.0">
                <children>
+                  <!-- Label for selecting pizza size -->
                   <Label prefHeight="17.0" prefWidth="100.0" text="Select Pizza Size">
+                     <!-- Set font -->
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
+                  <!-- ChoiceBox for selecting pizza size -->
                   <ChoiceBox fx:id="pizzaSizeChoiceBox" prefHeight="25.0" prefWidth="145.0" />
+                  <!-- Label for selecting crust -->
                   <Label prefHeight="17.0" prefWidth="99.0" text="Select Crust" />
+                  <!-- ChoiceBox for selecting crust -->
                   <ChoiceBox fx:id="crustChoiceBox" prefHeight="25.0" prefWidth="145.0" />
                </children>
+               <!-- Set margin for the VBox -->
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>
             </VBox>
+            <!-- VBox for selecting toppings -->
             <VBox prefHeight="200.0" prefWidth="162.0">
                <children>
+                  <!-- Label for selecting toppings -->
                   <Label text="Select Toppings ($1.15 each)">
+                     <!-- Set margin -->
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
+                     <!-- Set font -->
                      <font>
                         <Font name="System Bold" size="11.0" />
                      </font>
                   </Label>
+                  <!-- Checkboxes for selecting toppings -->
                   <CheckBox fx:id="pineappleCheckBox" mnemonicParsing="false" text="Pineapple" />
                   <CheckBox fx:id="extraCheeseCheckBox" mnemonicParsing="false" text="Extra Cheese" />
                   <CheckBox fx:id="driedShrimpsCheckBox" mnemonicParsing="false" text="Dried Shrimps" />
@@ -105,16 +139,21 @@
                   <CheckBox fx:id="sunDriedTomatoesCheckBox" text="Sun Dried Tomatoes" />
                   <CheckBox fx:id="jalapenoCheckBox" text="Jalapeno" />
                </children>
+               <!-- Set margin -->
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </VBox>
+            <!-- VBox for selecting meat type toppings -->
             <VBox prefHeight="175.0" prefWidth="193.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="180.0" text="(Meat type toppings cost $2.15 Each)">
+                  <!-- Label for selecting meat type toppings -->
+                  <Label prefHeight="17.0" prefWidth="180.0" text="Meat type toppings ($2.15 Each)">
+                     <!-- Set font -->
                      <font>
-                        <Font name="System Bold" size="9.0" />
+                        <Font name="System Bold" size="11.0" />
                      </font></Label>
+                  <!-- Checkboxes for selecting meat type toppings -->
                   <CheckBox fx:id="groundBeefCheckBox" mnemonicParsing="false" text="Ground Beef" />
                   <CheckBox fx:id="shreddedChickenCheckBox" mnemonicParsing="false" text="Shredded Chicken" />
                   <CheckBox fx:id="grilledChickenCheckBox" mnemonicParsing="false" prefHeight="17.0" prefWidth="123.0" text="Grilled Chicken" />
@@ -122,8 +161,9 @@
                   <CheckBox fx:id="hamCheckBox" mnemonicParsing="false" text="Ham" />
                   <CheckBox fx:id="baconCheckBox" mnemonicParsing="false" text="Bacon" />
                </children>
+               <!-- Set margin -->
                <HBox.margin>
-                  <Insets top="12.0" />
+                  <Insets top="10.0" />
                </HBox.margin>
             </VBox>
          </children>

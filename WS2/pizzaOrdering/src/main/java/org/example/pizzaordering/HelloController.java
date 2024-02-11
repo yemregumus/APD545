@@ -10,7 +10,7 @@
  This assignment represents my own work in accordance with Seneca Academic Policy.
 
  Signature: Y.E.G.
- Date: 12/02/2024
+ Date: 11/02/2024
  **********************************************/
 
 package org.example.pizzaordering;
@@ -191,6 +191,7 @@ public class HelloController {
         orderDetails.append("Pizza Size: ").append(pizzaSize).append("\n");
         orderDetails.append("Crust Type: ").append(crustType).append("\n");
         orderDetails.append("Total Price (Tax Included): ").append(String.format("$%.2f", totalPrice)).append("\n");
+        orderDetails.append("Toppings: ");
 
         // Add selected normal toppings to order details
         for (CheckBox checkBox : normalToppingsCheckBoxes) {
