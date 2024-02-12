@@ -1,0 +1,36 @@
+Order Number: 637256
+Customer Name: Yunus
+Customer Number: 437333333
+Pizza Quantity: 1
+Pizza Size: Medium - $10.00
+Crust Type: Deep Dish (+$2.00)
+Total Price (Tax Included): $13.56
+Toppings: Dried Shrimps, Dacon, Spinach, Shredded Chicken, Pepperoni
+
+Order Number: 671479
+Customer Name: Mahboob
+Customer Number: 437222222
+Pizza Quantity: 1
+Pizza Size: Extra Large - $15.00
+Crust Type: Thin
+Total Price (Tax Included): $16.95
+Toppings: Extra Cheese, Anchovies, Roasted Garlic, Grilled Chicken, Pepperoni
+
+Order Number: 442382
+Customer Name: Yunus
+Customer Number: 43722222
+Pizza Quantity: 2
+Pizza Size: Large - $13.00
+Crust Type: Deep Dish (+$2.00)
+Total Price (Tax Included): $16.95
+Toppings: Anchovies, Spinach, Roasted Garlic, Shredded Chicken, Pepperoni
+
+Order Number: 999328
+Customer Name: Mahboob
+Customer Number: 437222222
+Pizza Quantity: 1
+Pizza Size: Extra Large - $15.00
+Crust Type: Deep Dish (+$2.00)
+Total Price (Tax Included): $19.21
+Toppings: Extra Cheese, Anchovies, Roasted Garlic, Shredded Chicken, Pepperoni
+

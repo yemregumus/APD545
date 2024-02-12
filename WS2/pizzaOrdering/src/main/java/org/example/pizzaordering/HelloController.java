@@ -1,18 +1,3 @@
-/**********************************************
- Workshop #
- Course: APD545
- Semester: 5th Semester
- Last Name: Gumus
- First Name: Yunus Emre
- ID: 150331197
- Section: NAA
-
- This assignment represents my own work in accordance with Seneca Academic Policy.
-
- Signature: Y.E.G.
- Date: 11/02/2024
- **********************************************/
-
 package org.example.pizzaordering;
 
 import javafx.fxml.FXML;
@@ -21,6 +6,8 @@ import javafx.scene.control.Alert.AlertType;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.example.pizzaordering.FileHandler.saveToFile;
 
 public class HelloController {
     // Injecting FXML elements
@@ -144,6 +131,7 @@ public class HelloController {
 
     @FXML
     private void handlePlaceOrder() {
+        // Retrieve customer information from text fields
         String customerName = customerNameTextField.getText();
         if (!customerName.matches("[a-zA-Z ]+")) {
             showError("Customer name should only contain letters.");
@@ -167,56 +155,82 @@ public class HelloController {
             showError("Please enter a valid number for pizza quantity.");
             return;
         }
+
+        // Create a Customer object
+        Customer customer = new Customer(customerName, customerNumber);
+
+        // Retrieve other pizza information from UI elements
         String pizzaSize = pizzaSizeChoiceBox.getValue();
         String crustType = crustChoiceBox.getValue();
 
-        // Calculate base price based on pizza size
-        double basePrice = calculateBasePrice(pizzaSize);
+        // Calculate total price for the order
+        double totalPrice = calculateTotalPrice(pizzaSize, crustType);
 
-        // Calculate additional charges for toppings
-        double normalToppingsPrice = calculateToppingsPrice(normalToppingsCheckBoxes);
-        double meatToppingsPrice = calculateToppingsPrice(meatToppingsCheckBoxes);
-
-        // Calculate additional charges for crust type
-        double crustPrice = calculateCrustPrice(crustType);
-
-        // Calculate total price including 13 percent tax
-        double totalPrice = (basePrice + normalToppingsPrice + meatToppingsPrice + crustPrice) * pizzaQuantity * 1.13;
-
-        // Calculate order details
-        StringBuilder orderDetails = new StringBuilder();
-        orderDetails.append("Customer Name: ").append(customerName).append("\n");
-        orderDetails.append("Customer Number: ").append(customerNumber).append("\n");
-        orderDetails.append("Pizza Quantity: ").append(pizzaQuantity).append("\n");
-        orderDetails.append("Pizza Size: ").append(pizzaSize).append("\n");
-        orderDetails.append("Crust Type: ").append(crustType).append("\n");
-        orderDetails.append("Total Price (Tax Included): ").append(String.format("$%.2f", totalPrice)).append("\n");
-        orderDetails.append("Toppings: ");
-
-        // Add selected normal toppings to order details
+        // Create a list to store selected toppings
+        List<String> selectedToppings = new ArrayList<>();
         for (CheckBox checkBox : normalToppingsCheckBoxes) {
             if (checkBox.isSelected()) {
-                orderDetails.append(checkBox.getText()).append(", ");
+                selectedToppings.add(checkBox.getText());
             }
         }
-
-        // Add selected meat toppings to order details
         for (CheckBox checkBox : meatToppingsCheckBoxes) {
             if (checkBox.isSelected()) {
-                orderDetails.append(checkBox.getText()).append(", ");
+                selectedToppings.add(checkBox.getText());
             }
         }
 
-        if (orderDetails.length() > "Toppings: ".length()) {
-            orderDetails.setLength(orderDetails.length() - 2);
-        }
+        // Create an Order object
+        Order order = new Order(customer, pizzaQuantity, pizzaSize, crustType, selectedToppings, totalPrice);
+
+
+        saveToFile(order);
+        // Display order details
+        showOrderDetails(order);
+    }
+
+    private void showOrderDetails(Order order) {
+        // Generate order details string
+        String orderDetails = "Customer Name: " + order.getCustomer().getName() + "\n" +
+                "Customer Number: " + order.getCustomer().getPhoneNumber() + "\n" +
+                "Pizza Quantity: " + order.getQuantity() + "\n" +
+                "Pizza Size: " + order.getPizzaSize() + "\n" +
+                "Crust Type: " + order.getCrustType() + "\n" +
+                "Total Price (Tax Included): " + String.format("$%.2f", order.getTotalPrice()) + "\n" +
+                "Toppings: " + String.join(", ", order.getToppings());
 
         // Display an Alert dialog with the order details
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Order Details");
         alert.setHeaderText(null);
-        alert.setContentText(orderDetails.toString());
+        alert.setContentText(orderDetails);
         alert.showAndWait();
+    }
+
+    private double calculateTotalPrice(String pizzaSize, String crustType) {
+        // Implement calculation logic based on pizza size and crust type
+        // Sample implementation for demonstration purposes
+        double basePrice = switch (pizzaSize) {
+            case "Small - $7.00" -> 7.00;
+            case "Medium - $10.00" -> 10.00;
+            case "Large - $13.00" -> 13.00;
+            case "Extra Large - $15.00" -> 15.00;
+            default -> 0.00; // Handle invalid input
+        };
+
+        double crustPrice = switch (crustType) {
+            case "Deep Dish (+$2.00)" -> 2.00;
+            default -> 0.00; // No additional charge for other crust types
+        };
+
+        return (basePrice + crustPrice) * 1.13; // Including 13% tax
+    }
+
+    private void clearCheckboxes(List<CheckBox> checkboxes) {
+        for (CheckBox checkBox : checkboxes) {
+            if (checkBox != null) {
+                checkBox.setSelected(false);
+            }
+        }
     }
 
     private void showError(String message) {
@@ -228,62 +242,5 @@ public class HelloController {
         alert.showAndWait();
     }
 
-    private void clearCheckboxes(List<CheckBox> checkboxes) {
-        for (CheckBox checkBox : checkboxes) {
-            if (checkBox != null) {
-                checkBox.setSelected(false);
-            }
-        }
-    }
-    private double calculateBasePrice(String pizzaSize) {
-        // Determine base price based on pizza size
-        return switch (pizzaSize) {
-            case "Small - $7.00" -> 7.00;
-            case "Medium - $10.00" -> 10.00;
-            case "Large - $13.00" -> 13.00;
-            case "Extra Large - $15.00" -> 15.00;
-            default -> 0.00; // Handle invalid input
-        };
-    }
 
-    private double calculateToppingsPrice(List<CheckBox> toppingsCheckBoxes) {
-        // Calculate additional charges for toppings
-        double toppingsPrice = 0.0;
-
-        // Each normal topping costs $1.10
-        // Each meat topping costs $2.15
-        for (CheckBox checkBox : toppingsCheckBoxes) {
-            if (checkBox.isSelected()) {
-                String toppingName = checkBox.getText();
-                if (isMeatTopping(toppingName)) {
-                    toppingsPrice += 2.15;
-                } else {
-                    toppingsPrice += 1.10;
-                }
-            }
-        }
-        return toppingsPrice;
-    }
-
-    private boolean isMeatTopping(String toppingName) {
-        // Defining meat toppings here
-        List<String> meatToppings = new ArrayList<>();
-        meatToppings.add("Ground Beef");
-        meatToppings.add("Shredded Chicken");
-        meatToppings.add("Grilled Chicken");
-        meatToppings.add("Pepperoni");
-        meatToppings.add("Ham");
-        meatToppings.add("Bacon");
-
-        return meatToppings.contains(toppingName);
-    }
-
-    private double calculateCrustPrice(String crustType) {
-        // Determine additional charges for crust type
-        if (crustType.equals("Deep Dish (+$2.00)")) {
-            return 2.00; // Additional charge for deep dish crust
-        } else {
-            return 0.00; // No additional charge for other crust types
-        }
-    }
 }
