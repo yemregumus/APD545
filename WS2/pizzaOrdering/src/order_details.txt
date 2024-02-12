@@ -34,3 +34,12 @@ Crust Type: Deep Dish (+$2.00)
 Total Price (Tax Included): $19.21
 Toppings: Extra Cheese, Anchovies, Roasted Garlic, Shredded Chicken, Pepperoni
 
+Order Number: 206658
+Customer Name: a
+Customer Number: 12
+Pizza Quantity: 1
+Pizza Size: Medium - $10.00
+Crust Type: Thin
+Total Price (Tax Included): $16.27
+Toppings: Dried Shrimps, Dacon, Bacon
+
