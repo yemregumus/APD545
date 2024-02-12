@@ -163,8 +163,7 @@ public class HelloController {
         String pizzaSize = pizzaSizeChoiceBox.getValue();
         String crustType = crustChoiceBox.getValue();
 
-        // Calculate total price for the order
-        double totalPrice = calculateTotalPrice(pizzaSize, crustType);
+
 
         // Create a list to store selected toppings
         List<String> selectedToppings = new ArrayList<>();
@@ -178,7 +177,8 @@ public class HelloController {
                 selectedToppings.add(checkBox.getText());
             }
         }
-
+        // Calculate total price for the order
+        double totalPrice = calculateTotalPrice(pizzaSize, crustType, selectedToppings);
         // Create an Order object
         Order order = new Order(customer, pizzaQuantity, pizzaSize, crustType, selectedToppings, totalPrice);
 
@@ -206,8 +206,8 @@ public class HelloController {
         alert.showAndWait();
     }
 
-    private double calculateTotalPrice(String pizzaSize, String crustType) {
-        // Implement calculation logic based on pizza size and crust type
+    private double calculateTotalPrice(String pizzaSize, String crustType, List<String> toppings) {
+        // Implement calculation logic based on pizza size, crust type, and toppings
         // Sample implementation for demonstration purposes
         double basePrice = switch (pizzaSize) {
             case "Small - $7.00" -> 7.00;
@@ -222,8 +222,19 @@ public class HelloController {
             default -> 0.00; // No additional charge for other crust types
         };
 
-        return (basePrice + crustPrice) * 1.13; // Including 13% tax
+        // Calculate additional charges for toppings
+        double toppingsPrice = 0.0;
+        for (String topping : toppings) {
+            if (isMeatTopping(topping)) {
+                toppingsPrice += 2.20; // Each meat topping costs $2.20
+            } else {
+                toppingsPrice += 1.10; // Each normal topping costs $1.10
+            }
+        }
+
+        return ((basePrice + crustPrice + toppingsPrice) * 1.13); // Including 13% tax
     }
+
 
     private void clearCheckboxes(List<CheckBox> checkboxes) {
         for (CheckBox checkBox : checkboxes) {
@@ -242,5 +253,17 @@ public class HelloController {
         alert.showAndWait();
     }
 
+    private boolean isMeatTopping(String toppingName) {
+        // Define meat toppings here
+        List<String> meatToppings = new ArrayList<>();
+        meatToppings.add("Ground Beef");
+        meatToppings.add("Shredded Chicken");
+        meatToppings.add("Grilled Chicken");
+        meatToppings.add("Pepperoni");
+        meatToppings.add("Ham");
+        meatToppings.add("Bacon");
+
+        return meatToppings.contains(toppingName);
+    }
 
 }
