@@ -1,0 +1,12 @@
+
+Why you have single class or multiple classes in your design?
+
+In designing the car loan application, I decided to use multiple classes instead of cramming everything into a single class. This approach just makes sense—it helps keep things organized and easier to manage. Each class focuses on one thing: customers, loans, or vehicles. For example, the Customer class handles customer info, the Loan class takes care of loan info, and the Vehicle class deals with vehicle details. It's like having different compartments for different items in a toolbox, it keeps everything neat and tidy.
+
+Why choosing your data structure (used in the solution).
+
+As for data structures, I went with a HashMap to store the loan data. It seemed like the best fit because it allows me to easily associate key-value pairs, which is perfect for storing things like customer names with their corresponding loan details. Plus, HashMaps offer quick access to data, making it efficient to retrieve loan information when needed.
+
+Compare your chosen data structure with at least one more data structure.
+
+Comparing HashMaps with other data structures like ArrayLists, HashMaps have faster access times for retrieving specific loan data since they use keys for direct lookup. In contrast, ArrayLists require iterating through the list to find the desired data, which can be slower, especially for large datasets. So, HashMaps come out on top when it comes to performance for storing and retrieving loan information in my car loan application.
