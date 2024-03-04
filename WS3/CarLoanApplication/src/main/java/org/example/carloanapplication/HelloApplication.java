@@ -1,3 +1,17 @@
+/**********************************************
+ Workshop #
+ Course: APD545
+ Semester: 5th Semester
+ Last Name: Gumus
+ First Name: Yunus Emre
+ ID: 150331197
+ Section: NAA
+
+ This assignment represents my own work in accordance with Seneca Academic Policy.
+
+ Signature: Y.E.G.
+ Date: 04/03/2024
+ **********************************************/
 package org.example.carloanapplication;
 
 import javafx.application.Application;

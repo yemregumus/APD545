@@ -1,3 +1,17 @@
+/**********************************************
+ Workshop #
+ Course: APD545
+ Semester: 5th Semester
+ Last Name: Gumus
+ First Name: Yunus Emre
+ ID: 150331197
+ Section: NAA
+
+ This assignment represents my own work in accordance with Seneca Academic Policy.
+
+ Signature: Y.E.G.
+ Date: 04/03/2024
+ **********************************************/
 package org.example.carloanapplication;
 
 import javafx.fxml.FXML;
@@ -5,9 +19,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class HelloController {
@@ -48,9 +61,6 @@ public class HelloController {
     private RadioButton monthlyRadioButton;
 
     @FXML
-    private Button clearButton;
-
-    @FXML
     private Button calculateButton;
 
     @FXML
@@ -64,7 +74,7 @@ public class HelloController {
 
     @FXML
     // Toggle group for payment frequency radio buttons
-    private ToggleGroup paymentFrequencyToggleGroup = new ToggleGroup();
+    private final ToggleGroup paymentFrequencyToggleGroup = new ToggleGroup();
 
     @FXML
     // Used Map to store saved rates data
@@ -143,19 +153,19 @@ public class HelloController {
     // Validate input fields
     @FXML
     private boolean validateInputFields() {
-        return !isEmpty(customerNameTextField.getText()) &&
-                !isEmpty(customerNumberTextField.getText()) &&
+        return isEmpty(customerNameTextField.getText()) &&
+                isEmpty(customerNumberTextField.getText()) &&
                 vehicleTypeChoice.getValue() != null &&
                 vehicleAgeChoice.getValue() != null &&
-                !isEmpty(vehiclePriceTextField.getText()) &&
-                !isEmpty(downPaymentTextField.getText()) &&
-                !isEmpty(interestRateTextField.getText());
+                isEmpty(vehiclePriceTextField.getText()) &&
+                isEmpty(downPaymentTextField.getText()) &&
+                isEmpty(interestRateTextField.getText());
     }
 
     // Check if a string is empty
     @FXML
     private boolean isEmpty(String str) {
-        return str == null || str.trim().isEmpty();
+        return str != null && !str.trim().isEmpty();
     }
 
     @FXML
@@ -211,8 +221,8 @@ public class HelloController {
 
         // Calculate total payment and interest based on frequency
         double totalInterest = 0.0;
-        double totalPayment = 0.0;
-        double paymentAmount = 0.0;
+        double totalPayment;
+        double paymentAmount;
         if (interestRate != 0) {
             double temp = Math.pow(1 + monthlyInterestRate / paymentFrequency, loanPeriodMonths * paymentFrequency);
             totalPayment = (loanAmount * monthlyInterestRate / paymentFrequency * temp) / (temp - 1);
