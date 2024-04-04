@@ -14,7 +14,10 @@
  **********************************************/
 package org.example.invmanagement;
 
-import jakarta.xml.bind.*;
+
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBException;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -38,7 +41,7 @@ import java.util.Optional;
 import jakarta.xml.bind.Marshaller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.UUID;
+
 
 import java.util.stream.Collectors;
 
@@ -70,8 +73,8 @@ public class MainScreenController extends HelloApplication {
     @FXML
     private Inventory inventory = new Inventory();
 
-    private ObservableList<Part> partsObservableList;
-    private ObservableList<Product> productsObservableList;
+    private final ObservableList<Part> partsObservableList;
+    private final ObservableList<Product> productsObservableList;
 
     @FXML
     private TableColumn<Part, Integer> partIdColumn;
@@ -268,7 +271,7 @@ public class MainScreenController extends HelloApplication {
 
 
     @FXML
-    private void handleAddPartButtonClick(ActionEvent event) throws IOException {
+    private void handleAddPartButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddPartScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         AddPartsController controller = fxmlLoader.getController();
@@ -282,7 +285,7 @@ public class MainScreenController extends HelloApplication {
     }
 
     @FXML
-    private void handleModifyProduct(ActionEvent event) throws IOException {
+    private void handleModifyProduct() throws IOException {
         Product selectedProduct = productsTable.getSelectionModel().getSelectedItem();
         if (selectedProduct != null) {
             ModifyProductController.setProductToModify(selectedProduct);
@@ -310,7 +313,7 @@ public class MainScreenController extends HelloApplication {
     }
 
     @FXML
-    private void handleModifyPartButtonClick(ActionEvent event) throws IOException {
+    private void handleModifyPartButtonClick() throws IOException {
         Part selectedPart = partsTable.getSelectionModel().getSelectedItem();
         if (selectedPart != null) {
             ModifyPartController.setPartToModify(selectedPart);
@@ -335,7 +338,7 @@ public class MainScreenController extends HelloApplication {
     }
 
     @FXML
-    private void handleAddProduct(ActionEvent event) throws IOException {
+    private void handleAddProduct() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddProductScreen.fxml"));
         fxmlLoader.setControllerFactory(c -> new AddProductController(inventory, this));
         Scene scene = new Scene(fxmlLoader.load());
@@ -351,7 +354,7 @@ public class MainScreenController extends HelloApplication {
 
 
     @FXML
-    private void handleDeletePart(ActionEvent event) {
+    private void handleDeletePart() {
         Part selectedPart = partsTable.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -405,7 +408,7 @@ public class MainScreenController extends HelloApplication {
     }
 
     @FXML
-    private void handleSearchPart(ActionEvent event) {
+    private void handleSearchPart() {
         String searchValue = searchPartField.getText();
         List<Part> matchingPartsByName = inventory.lookupPartByName(searchValue);
         Part matchingPartById = inventory.lookupPartById(searchValue);
@@ -416,14 +419,14 @@ public class MainScreenController extends HelloApplication {
     }
 
     @FXML
-    private void handleSearchProduct(ActionEvent event) {
+    private void handleSearchProduct() {
         String productName = searchProductField.getText();
         List<Product> matchingProducts = inventory.lookupProduct(productName);
         productsTable.setItems(FXCollections.observableArrayList(matchingProducts));
     }
 
     @FXML
-    private void handleExit(ActionEvent event) {
+    private void handleExit() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Exit Program");
@@ -439,7 +442,7 @@ public class MainScreenController extends HelloApplication {
     }
 
     @FXML
-    private void handleSaveToFileClick(ActionEvent event) {
+    private void handleSaveToFileClick() {
         String selectedData = dataChoiceBox.getValue();
 
         try {
@@ -478,7 +481,7 @@ public class MainScreenController extends HelloApplication {
     }
 
     @FXML
-    private void handleLoadFromFileClick(ActionEvent event) {
+    private void handleLoadFromFileClick() {
         String selectedData = dataChoiceBox.getValue();
 
         try {
@@ -604,7 +607,7 @@ public class MainScreenController extends HelloApplication {
     }
 
     @FXML
-    private void handleLoadFromDatabaseClick(ActionEvent event) {
+    private void handleLoadFromDatabaseClick() {
         try {
             // Establish a connection to your database
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/invmanagement", "root", "13uncucumA@");
@@ -699,7 +702,7 @@ public class MainScreenController extends HelloApplication {
         }
     }
     @FXML
-    private void handleDeleteAllData(ActionEvent event) {
+    private void handleDeleteAllData() {
         // Clear all parts and products from the inventory
         inventory.getAllParts().clear();
         inventory.getAllProducts().clear();
@@ -710,7 +713,7 @@ public class MainScreenController extends HelloApplication {
     }
 
     @FXML
-    private void handleDeleteAllFromDB(ActionEvent event) {
+    private void handleDeleteAllFromDB() {
         try {
             // Establish a connection to your database
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/invmanagement", "root", "13uncucumA@");
