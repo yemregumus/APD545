@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<parts>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="inHouse">
+        <id>760819</id>
+        <machineId>1234</machineId>
+        <max>20</max>
+        <min>1</min>
+        <name>Engine</name>
+        <price>500.0</price>
+        <stock>10</stock>
+    </part>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="outsourced">
+        <companyName>AutoParts Co.</companyName>
+        <id>700097</id>
+        <machineId>0</machineId>
+        <max>15</max>
+        <min>1</min>
+        <name>Transmission</name>
+        <price>1200.0</price>
+        <stock>7</stock>
+    </part>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="inHouse">
+        <id>769267</id>
+        <machineId>5678</machineId>
+        <max>100</max>
+        <min>1</min>
+        <name>Brake Pads</name>
+        <price>70.0</price>
+        <stock>50</stock>
+    </part>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="outsourced">
+        <companyName>GlassWorks Inc.</companyName>
+        <id>753354</id>
+        <machineId>0</machineId>
+        <max>30</max>
+        <min>1</min>
+        <name>Windshield</name>
+        <price>200.0</price>
+        <stock>15</stock>
+    </part>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="inHouse">
+        <id>374718</id>
+        <machineId>9012</machineId>
+        <max>200</max>
+        <min>1</min>
+        <name>Air Filter</name>
+        <price>10.0</price>
+        <stock>100</stock>
+    </part>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="outsourced">
+        <companyName>Filter Kings</companyName>
+        <id>549919</id>
+        <machineId>0</machineId>
+        <max>200</max>
+        <min>1</min>
+        <name>Oil Filter</name>
+        <price>10.0</price>
+        <stock>100</stock>
+    </part>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="inHouse">
+        <id>420016</id>
+        <machineId>3456</machineId>
+        <max>20</max>
+        <min>1</min>
+        <name>Alternator</name>
+        <price>100.0</price>
+        <stock>10</stock>
+    </part>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="outsourced">
+        <companyName>Energy Plus</companyName>
+        <id>952653</id>
+        <machineId>0</machineId>
+        <max>30</max>
+        <min>1</min>
+        <name>Battery</name>
+        <price>120.0</price>
+        <stock>15</stock>
+    </part>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="inHouse">
+        <id>180893</id>
+        <machineId>7890</machineId>
+        <max>200</max>
+        <min>1</min>
+        <name>Spark Plug</name>
+        <price>5.0</price>
+        <stock>100</stock>
+    </part>
+    <part xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="outsourced">
+        <companyName>Rubber Manufacturers</companyName>
+        <id>179056</id>
+        <machineId>0</machineId>
+        <max>100</max>
+        <min>1</min>
+        <name>Tire</name>
+        <price>80.0</price>
+        <stock>50</stock>
+    </part>
+</parts>

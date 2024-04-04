@@ -1,0 +1,19 @@
+During the development process, I encountered several challenges while working on the code for our inventory management system. One significant challenge was related to the integration of JAXB (Java Architecture for XML Binding) with our application. JAXB was being used to marshal and unmarshal Java objects to and from XML, facilitating data exchange with our database and external systems.
+
+The main issue I faced was an InstantiationException while trying to unmarshal XML data into Java objects, specifically instances of the Part class and its subclasses (InHouse and Outsourced). This error indicated that JAXB was unable to instantiate the classes during the unmarshalling process.
+
+To address this challenge, I carefully reviewed the code and XML annotations in the Part class and its subclasses to ensure they were correctly implemented. Additionally, I verified that the XML data being processed matched the expected structure defined by the Java classes and XML annotations.
+
+Despite my efforts, I struggled to identify the root cause of the InstantiationException. At this point, I reached out for assistance from colleagues and online communities to gather insights and potential solutions. By discussing the issue with peers and receiving valuable feedback, I gained new perspectives and ideas for troubleshooting.
+
+Eventually, through problem-solving and iterative testing, I was able to resolve the InstantiationException. The issue stemmed from discrepancies between the XML structure and the Java class hierarchy, as well as inconsistencies in the XML annotations. By refining these aspects and ensuring alignment between the XML data and Java classes, I successfully overcame the challenge.
+
+In addition to the challenges faced during the integration of our Java classes with the MySQL database, I encountered another significant consideration regarding the implementation of inheritance in the database schema.
+
+Initially, I deliberated on various strategies for representing inheritance relationships in the database, including table per class hierarchy and table per subclass. However, after careful evaluation, I opted for a simpler approach that involved maintaining two separate tables: one for parts and another for products.
+
+The parts table consists of columns representing attributes common to all parts, such as id, name, price, stock, min, max, machineId, and companyName. This structure allows for the storage of both in-house parts and outsourced parts, with each part type having its specific attributes.
+
+On the other hand, the products table includes columns similar to those in the parts table, along with an additional column named associatedParts. This column stores the IDs of parts associated with each product. By storing these IDs as a comma-separated string, we establish a relationship between products and the parts they consist of, enabling efficient retrieval and management of product-part associations.
+
+Overall, by adopting a straightforward database schema design and leveraging the capabilities of MySQL, I successfully implemented inheritance in the database while effectively addressing the requirements of our inventory management system. This approach not only simplified the development process but also laid a solid foundation for scalability and future enhancements.

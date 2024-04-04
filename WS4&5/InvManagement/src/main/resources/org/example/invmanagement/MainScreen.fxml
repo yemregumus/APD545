@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.invmanagement.MainScreenController">
+    <children>
+        <Rectangle arcHeight="60.0" arcWidth="50.0" fill="#d67a92" height="256.0" layoutX="504.0" layoutY="64.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="4.0" width="446.0" />
+        <Rectangle arcHeight="60.0" arcWidth="50.0" fill="#d67a92" height="254.0" layoutX="41.0" layoutY="64.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="4.0" width="450.0" />
+        <HBox alignment="CENTER" layoutX="22.0" layoutY="84.0" prefHeight="172.0" prefWidth="920.0" AnchorPane.topAnchor="84.0">
+            <children>
+                <TableView fx:id="partsTable" maxHeight="150.0" prefHeight="100.0" prefWidth="450.0">
+                    <columns>
+                        <TableColumn fx:id="partIdColumn" prefWidth="75.0" text="Part ID" />
+                        <TableColumn fx:id="partNameColumn" prefWidth="90.0" text="Part Name" />
+                        <TableColumn fx:id="partStockColumn" prefWidth="115.0" text="Inventory Level" />
+                        <TableColumn fx:id="partPriceColumn" prefWidth="170.0" text="Pice/ Cost per Unit" />
+                    </columns>
+                </TableView>
+                <Separator orientation="VERTICAL" prefHeight="227.0" prefWidth="50.0" />
+                <TableView fx:id="productsTable" maxHeight="150.0" prefHeight="274.0" prefWidth="450.0">
+                    <columns>
+                        <TableColumn fx:id="productIdColumn" prefWidth="75.0" text="Product ID" />
+                        <TableColumn fx:id="productNameColumn" prefWidth="90.0" text="Product Name" />
+                        <TableColumn fx:id="productStockColumn" prefWidth="115.0" text="Inventory Level" />
+                        <TableColumn fx:id="productPriceColumn" prefWidth="170.0" text="Pice/ Cost per Unit" />
+                    </columns>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </TableView>
+            </children>
+            <padding>
+                <Insets left="30.0" />
+            </padding>
+        </HBox>
+        <Label layoutX="30.0" layoutY="31.0" prefHeight="17.0" prefWidth="402.0" text="Inventory Management System (Your ID)">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="searchProductField" layoutX="791.0" layoutY="71.0" onAction="#handleSearchProduct" promptText="Search by ProductID or Name" />
+        <TextField fx:id="searchPartField" layoutX="331.0" layoutY="71.0" onAction="#handleSearchPart" promptText="Search by PartID or Name" />
+        <Label layoutX="56.0" layoutY="76.0" prefHeight="17.0" prefWidth="43.0" text="Parts">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="519.0" layoutY="75.0" prefHeight="17.0" prefWidth="69.0" text="Products">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Button fx:id="deleteProductButton" layoutX="876.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleDeleteProduct" text="Delete" />
+        <Button fx:id="modifyProductButton" layoutX="814.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleModifyProduct" text="Modify" />
+        <Button fx:id="addProductButton" layoutX="752.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleAddProduct" prefHeight="25.0" prefWidth="52.0" text="Add" />
+        <Button fx:id="exitButton" layoutX="850.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="52.0" text="Exit" />
+        <Button fx:id="deletePartButton" layoutX="417.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleDeletePart" text="Delete" />
+        <Button fx:id="modifyPartButton" layoutX="355.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleModifyPartButtonClick" text="Modify" />
+        <Button fx:id="addPartButton" layoutX="293.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleAddPartButtonClick" prefHeight="25.0" prefWidth="52.0" text="Add" />
+        <Label layoutX="253.0" layoutY="357.0" text="Please Select Data To Be Saved or Loaded">Please Select Data To Be Saved</Label>
+        <ChoiceBox fx:id="dataChoiceBox" layoutX="261.0" layoutY="374.0" prefHeight="25.0" prefWidth="205.0">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Parts" />
+                <String fx:value="Products" />
+                <String fx:value="All Data" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+      <Button fx:id="SaveToFileButton" layoutX="503.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleSaveToFileClick" prefHeight="25.0" prefWidth="110.0" text="Save To File" />
+      <Button fx:id="SaveToDatabaseButton" layoutX="503.0" layoutY="385.0" mnemonicParsing="false" onAction="#handleSaveToDatabaseClick" text="Save To Database" />
+      <Button fx:id="LoadFromFileButton" layoutX="622.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleLoadFromFileClick" prefHeight="25.0" prefWidth="126.0" text="Load From File " />
+      <Button fx:id="LoadFromDatabaseButton" layoutX="622.0" layoutY="386.0" mnemonicParsing="false" onAction="#handleLoadFromDatabaseClick" prefHeight="25.0" prefWidth="126.0" text="Load From Database" />
+      <Button fx:id="DeleteAllDataButton" layoutX="622.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleDeleteAllData" text="Detele All From Local Tables" />
+      <Button fx:id="DeleteAllFromDBButton" layoutX="462.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleDeleteAllFromDB" text="Delete All From Database" />
+
+    </children>
+</AnchorPane>
